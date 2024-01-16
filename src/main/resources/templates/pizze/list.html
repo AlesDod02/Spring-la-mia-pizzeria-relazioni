@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Pizze</title>
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <h1 class="text-center">Lista Pizze</h1>
+    <div th:if="${pizzaList.size() == 0}">The list is empty</div>
+    <table class="table" th:unless="${pizzaList.size() == 0}">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Foto</th>
+
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pizza : ${pizzaList}">
+            <td th:text="${pizza.name}" class="pt-5"></td>
+            <td>
+                <img class="img-list img" th:src="@{${pizza.url}}">
+            </td>
+
+            <td>
+                <div class="d-flex justify-content-between align-center">
+                    <a class="btn btn-warning margine  button-custom" th:href="@{/pizze/show/{id}(id=${pizza.id})}">Dettagli</a>
+
+                    <a class="btn btn-warning margine  button-custom" th:href="@{/pizze/edit/{id}(id=${pizza.id})}">Modifica</a>
+
+                    <form
+                            th:action="@{/pizze/delete/{id}(id=${pizza.id})}"
+                            method="post"
+                            onsubmit="return confirm('Are you sure?')"
+                    >
+                        <button type="submit" class="btn btn-danger margine button-custom">Delete</button>
+                    </form>
+                </div>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div><a class="btn btn-warning margine" th:href="@{/pizze/create}">Aggiungi la tua pizza</a></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>

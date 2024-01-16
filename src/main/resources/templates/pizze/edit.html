@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <title>Edit Pizza</title>
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <h1>Edit Pizza</h1>
+    <hr>
+
+    <form
+            id="edit-pizza"
+            method="post"
+            th:object="${pizza}"
+            th:action="@{/pizze/edit/{id}(id=${pizza.id})}"
+            class="row gy-3"
+    >
+
+        <div class="col-6">
+            <label class="form-label" for="name">nome</label>
+            <input class="form-control" type="text" id="name" th:field="*{name}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6">
+            <label class="form-label" for="description">description</label>
+            <textarea class="form-control" type="text" id="description" th:field="*{description}"
+                      th:errorClass="is-invalid"></textarea>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-6">
+            <label class="form-label" for="price">Price</label>
+            <input class="form-control" type="text" id="price" th:field="*{price}">
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a class="btn btn-danger" th:href="@{/pizze}">Cancel</a>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>
