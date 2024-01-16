@@ -1,4 +1,4 @@
-package org.learning.springlamiapizzeriacrudrelazioni.controller;
+package org.learning.springlamiapizzeriacrud.controller;
 
 import org.learning.springlamiapizzeriacrudrelazioni.model.Offerta;
 import org.learning.springlamiapizzeriacrudrelazioni.model.Pizza;

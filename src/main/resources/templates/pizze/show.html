@@ -23,34 +23,6 @@
             <h3 class="text-center mt-2" th:text="${pizza.price} + ' '+ €"> </h3>
         </div>
     </div>
-    <section class="mt-5">
-        <h3>
-            <span>offerte</span>
-            <!-- /borrowings/create?bookId=2 -->
-            <a th:href="@{/offerte/create(pizzaId=${pizza.id})}" class="btn btn-primary">+</a>
-        </h3>
-        <table class="table" th:if="${pizza.offerte.size() > 0}">
-            <thead>
-            <tr>
-                <th>Start Date</th>
-                <th>Expire Date</th>
-                <th>titolo</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="offerte : ${pizza.offerte}">
-                <td th:text="${offerte.startDate}"></td>
-                <td th:text="${offerte.expireDate}"></td>
-                <td th:text="${offerte.title}"></td>
-
-            </tr>
-            </tbody>
-        </table>
-        <div class="alert alert-info" th:if="${pizza.offerte.size() == 0}">
-            questa pizza non ha nessuna offerta
-        </div>
-    </section>
     <div class="mt-4">
         <a th:href="@{/pizze}">Torna alla lista</a>
     </div>
