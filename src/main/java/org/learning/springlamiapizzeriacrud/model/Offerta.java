@@ -12,6 +12,7 @@ public class Offerta {
     private LocalDate startDate;
     private LocalDate endDate;
     private String title;
+
     @ManyToOne
     private Pizza pizza;
 
@@ -55,4 +56,5 @@ public class Offerta {
     public void setPizza(Pizza pizza) {
         this.pizza = pizza;
     }
+
 }
