@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/offert")
+@RequestMapping("/offerte")
 public class OffertaController {
     @Autowired
     private PizzaRepository pizzaRepository;
@@ -33,8 +33,6 @@ public class OffertaController {
             Offerta newOffert= new Offerta();
 
             newOffert.setPizza(pizzaWithOffert);
-            newOffert.setStartDate(LocalDate.now());
-            newOffert.setEndDate(LocalDate.now().plusDays(30));
             model.addAttribute("offerta", newOffert);
             return "offerte/create";
 
@@ -48,7 +46,7 @@ public class OffertaController {
     @PostMapping("/create")
     public String store(Offerta fromOfferta){
         Offerta storedOfferta = offertaRepository.save(fromOfferta);
-        return "redirect:/pizz/show/"+ storedOfferta.getPizza().getId();
+        return "redirect:/pizze/show/"+ storedOfferta.getPizza().getId();
     }
 
 }
