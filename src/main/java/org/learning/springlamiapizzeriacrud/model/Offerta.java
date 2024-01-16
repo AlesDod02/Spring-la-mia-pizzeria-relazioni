@@ -1,12 +1,10 @@
 package org.learning.springlamiapizzeriacrud.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+@Entity
 public class Offerta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +14,7 @@ public class Offerta {
     private String title;
     @ManyToOne
     private Pizza pizza;
+
 
     public Integer getId() {
         return id;
