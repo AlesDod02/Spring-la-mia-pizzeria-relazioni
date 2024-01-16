@@ -1,4 +1,4 @@
-package org.learning.springlamiapizzeriacrud.controller;
+package org.learning.springlamiapizzeriacrudrelazioni.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

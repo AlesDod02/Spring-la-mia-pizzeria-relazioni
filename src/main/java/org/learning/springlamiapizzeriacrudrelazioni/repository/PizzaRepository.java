@@ -1,6 +1,6 @@
-package org.learning.springlamiapizzeriacrud.repository;
+package org.learning.springlamiapizzeriacrudrelazioni.repository;
 
-import org.learning.springlamiapizzeriacrud.model.Pizza;
+import org.learning.springlamiapizzeriacrudrelazioni.model.Pizza;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PizzaRepository extends JpaRepository<Pizza, Integer> {

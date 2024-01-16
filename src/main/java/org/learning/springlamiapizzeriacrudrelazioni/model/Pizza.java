@@ -1,4 +1,4 @@
-package org.learning.springlamiapizzeriacrud.model;
+package org.learning.springlamiapizzeriacrudrelazioni.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -6,7 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 
 import java.math.BigDecimal;
-import java.net.URL;
+import java.util.List;
+
 @Entity
 @Table(name = "pizze")
 public class Pizza {
@@ -24,6 +25,8 @@ public class Pizza {
     @Column(nullable = false)
     private BigDecimal price;
     private String url;
+    @OneToMany(mappedBy = "pizza")
+    private List<Offerta> offerte;
 
     public Integer getId() {
         return id;
@@ -63,5 +66,13 @@ public class Pizza {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public List<Offerta> getOfferte() {
+        return offerte;
+    }
+
+    public void setOfferte(List<Offerta> offerte) {
+        this.offerte = offerte;
     }
 }

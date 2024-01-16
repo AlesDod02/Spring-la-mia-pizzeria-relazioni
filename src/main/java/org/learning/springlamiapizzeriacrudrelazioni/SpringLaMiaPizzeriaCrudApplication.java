@@ -1,4 +1,4 @@
-package org.learning.springlamiapizzeriacrud;
+package org.learning.springlamiapizzeriacrudrelazioni;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
