@@ -26,7 +26,7 @@ public class Pizza {
     @Column(nullable = false)
     private BigDecimal price;
     private String url;
-    @OneToMany(mappedBy = "pizza")
+    @OneToMany(mappedBy = "pizza", orphanRemoval = true)
     private List<Offerta> offerte;
 
     public Integer getId() {

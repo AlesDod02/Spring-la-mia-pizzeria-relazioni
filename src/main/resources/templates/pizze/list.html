@@ -14,6 +14,21 @@
 
 <div class="container">
     <h1 class="text-center">Lista Pizze</h1>
+    <div class="row mb-4">
+        <form
+                id="pizza-search"
+                th:action="@{/pizze}"
+                method="get"
+                class="col-4"
+        >
+            <div class="input-group">
+                <input class="form-control" type="text" name="keyword" id="keyword"
+                       placeholder="Search pizza by name" th:value="${preloadSearch}">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </form>
+    </div>
     <div th:if="${pizzaList.size() == 0}">The list is empty</div>
     <table class="table" th:unless="${pizzaList.size() == 0}">
         <thead>
@@ -39,12 +54,14 @@
                     <a class="btn btn-warning margine  button-custom" th:href="@{/pizze/edit/{id}(id=${pizza.id})}">Modifica</a>
 
                     <form
+                            th:if="${pizza.getOfferte.size() ==0}"
                             th:action="@{/pizze/delete/{id}(id=${pizza.id})}"
                             method="post"
                             onsubmit="return confirm('Are you sure?')"
                     >
                         <button type="submit" class="btn btn-danger margine button-custom">Delete</button>
                     </form>
+                    <button th:unless="${pizza.getOfferte.size() ==0}" class="btn btn-danger margine button-custom " disabled>Delete</button>
                 </div>
             </td>
 

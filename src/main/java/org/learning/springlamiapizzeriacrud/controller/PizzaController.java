@@ -23,9 +23,15 @@ public class PizzaController {
     private PizzaRepository pizzaRepository;
 
     @GetMapping
-    public String index(Model model) {
-        List<Pizza> pizzaList = pizzaRepository.findAll();
+    public String index(@RequestParam(name ="keyword", required = false) String searchKeyword, Model model) {
+        List<Pizza> pizzaList;
+        if (searchKeyword != null ){
+            pizzaList= pizzaRepository.findByNameContaining(searchKeyword);
+        }else {
+            pizzaList = pizzaRepository.findAll();
+        }
         model.addAttribute("pizzaList", pizzaList);
+        model.addAttribute("preloadSearch", searchKeyword);
         return "pizze/list";
     }
 
@@ -97,7 +103,7 @@ public class PizzaController {
             pizzaRepository.deleteById(id);
             // mando un messaggio di successo con la redirect
             redirectAttributes.addFlashAttribute("redirectMessage",
-                    "Book " + result.get().getName() + " deleted!");
+                    "Pizza " + result.get().getName() + " deleted!");
             return "redirect:/pizze";
         } else {
             // se non c'è sollevo un'eccezione

@@ -43,6 +43,14 @@
                 <td th:text="${offerte.startDate}"></td>
                 <td th:text="${offerte.endDate}"></td>
                 <td th:text="${offerte.title}"></td>
+                <td><a type="button" class="btn btn-primary" th:href="@{/offerte/edit/{id}(id=${offerte.id})}">Update</a></td>
+                <td><form
+                        th:action="@{/offerte/delete/{id}(id=${offerte.id})}"
+                        method="post"
+                        onsubmit="return confirm('Are you sure?')"
+                >
+                <button type="submit" class="btn btn-danger">Delete</button></form></td>
+
 
             </tr>
             </tbody>
