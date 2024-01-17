@@ -42,8 +42,9 @@
         </div>
         <div class="col-12">
             <label class="form-label" for="title">Title</label>
-            <textarea class="form-control" id="title" th:field="*{title}"
-                      th:errorClass="is-invalid"></textarea>
+            <input
+                    class="form-control" id="title" th:field="*{title}"
+                      th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}">
                 <ul>
                     <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
