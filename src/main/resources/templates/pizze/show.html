@@ -39,20 +39,26 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="offerte : ${pizza.offerte}">
+            <tr th:each="offerte : ${pizza.offerte}" >
                 <td th:text="${offerte.startDate}"></td>
                 <td th:text="${offerte.endDate}"></td>
                 <td th:text="${offerte.title}"></td>
                 <td><a type="button" class="btn btn-primary" th:href="@{/offerte/edit/{id}(id=${offerte.id})}">Update</a></td>
-                <td><form
+                <td th:if="${pizza.fineOfferta == false}"><form
+
+
                         th:action="@{/offerte/delete/{id}(id=${offerte.id})}"
                         method="post"
                         onsubmit="return confirm('Are you sure?')"
                 >
                 <button type="submit" class="btn btn-danger">Delete</button></form></td>
+                <td><button th:unless="${pizza.fineOfferta == false}" class="btn btn-danger margine button-custom "
+                            disabled>Delete
+                </button></td>
 
 
             </tr>
+
             </tbody>
         </table>
         <div class="alert alert-info" th:if="${pizza.offerte.size() == 0}">

@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Range;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,14 +21,15 @@ public class Pizza {
     private String name;
     @NotEmpty
     @Column(nullable = false)
-    private  String description;
+    private String description;
     @NotNull
-    @Range(min=0)
+    @Range(min = 0)
     @Column(nullable = false)
     private BigDecimal price;
     private String url;
     @OneToMany(mappedBy = "pizza", orphanRemoval = true)
     private List<Offerta> offerte;
+
 
     public Integer getId() {
         return id;
@@ -76,4 +78,16 @@ public class Pizza {
     public void setOfferte(List<Offerta> offerte) {
         this.offerte = offerte;
     }
+
+    public boolean getFineOfferta() {
+        for (Offerta offerta : offerte) {
+            if (LocalDate.now().isBefore(offerta.getEndDate())) {
+                return true;
+
+            }
+
+        }
+        return false;
+    }
+
 }

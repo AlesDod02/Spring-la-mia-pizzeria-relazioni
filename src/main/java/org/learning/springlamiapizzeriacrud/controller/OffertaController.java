@@ -53,10 +53,7 @@ public class OffertaController {
 
             return "offerte/create";
         }
-        if (fromOfferta.getEndDate() != null && fromOfferta.getEndDate().isBefore(fromOfferta.getStartDate())) {
 
-            fromOfferta.setEndDate(fromOfferta.getStartDate().plusDays(30));
-        }
 
         Offerta storedOfferta = offertaRepository.save(fromOfferta);
         return "redirect:/pizze/show/" + storedOfferta.getPizza().getId();
@@ -101,12 +98,7 @@ public class OffertaController {
             if (bindingResult.hasErrors()) {
                 return "/offerte/edit";
             }
-            if (fromOfferta.getEndDate() != null && fromOfferta.getEndDate().isBefore(fromOfferta.getStartDate())) {
-                fromOfferta.setEndDate(fromOfferta.getStartDate().plusDays(30));
 
-
-
-            }
 
             Offerta savedOfferta = offertaRepository.save(fromOfferta);
             return "redirect:/pizze/show/" + result.get().getPizza().getId();

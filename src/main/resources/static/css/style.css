@@ -18,3 +18,7 @@ width:500px;}
 .align-center {
     align-items: center;
 }
+body {background-color: #E2E3E5;}
+.bg-grey{
+    background-color: #E2E3E5 !important;
+}

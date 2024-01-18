@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Pizze</title>
 </head>
-<body>
+<body bg-page>
 
 <div class="container">
     <h1 class="text-center">Lista Pizze</h1>
@@ -24,7 +24,7 @@
             <div class="input-group">
                 <input class="form-control" type="text" name="keyword" id="keyword"
                        placeholder="Search pizza by name" th:value="${preloadSearch}">
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i>
+                <button type="submit" class="btn btn-primary">Cerca
                 </button>
             </div>
         </form>
@@ -32,17 +32,14 @@
     <div th:if="${pizzaList.size() == 0}">The list is empty</div>
     <table class="table " th:unless="${pizzaList.size() == 0}">
         <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Foto</th>
-
-
-            <th></th>
+        <tr class="bg-grey">
+            <th class="bg-grey">Nome</th>
+            <th class="bg-grey">Foto</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="pizza : ${pizzaList}"
-            th:classappend="${pizza.offerte.size() >= 1 ? 'table-warning':''} ">
+            th:classappend="${pizza.offerte.size() >= 1 ? 'table-warning':'table-secondary'} ">
 
             <td th:text="${pizza.name}" class="pt-5"></td>
             <td>
@@ -62,10 +59,12 @@
                             onsubmit="return confirm('Are you sure?')"
                     >
                         <button type="submit" class="btn btn-danger margine button-custom">Delete</button>
+
                     </form>
                     <button th:unless="${pizza.getOfferte.size() ==0}" class="btn btn-danger margine button-custom "
                             disabled>Delete
                     </button>
+
                 </div>
             </td>
 
