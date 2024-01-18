@@ -1,7 +1,9 @@
 package org.learning.springlamiapizzeriacrud.controller;
 
 import jakarta.validation.Valid;
+import org.learning.springlamiapizzeriacrud.model.Ingredienti;
 import org.learning.springlamiapizzeriacrud.model.Pizza;
+import org.learning.springlamiapizzeriacrud.repository.IngredientiRepository;
 import org.learning.springlamiapizzeriacrud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,8 @@ import java.util.Optional;
 public class PizzaController {
     @Autowired
     private PizzaRepository pizzaRepository;
+    @Autowired
+    private IngredientiRepository ingredientiRepository;
 
     @GetMapping
     public String index(@RequestParam(name ="keyword", required = false) String searchKeyword, Model model) {
@@ -52,15 +56,20 @@ public class PizzaController {
         Pizza pizza = new Pizza();
 
         model.addAttribute("pizza", pizza);
+        model.addAttribute("ingredienti", ingredientiRepository.findAll());
         return "pizze/create";
     }
 
     @PostMapping("/create")
-    public String pizzeria(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
+    public String pizzeria(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("ingredienti", ingredientiRepository.findAll());
+
             return "pizze/create";
         }
         Pizza savedPizza = pizzaRepository.save(formPizza);
+
+
         return "redirect:/pizze/show/" + savedPizza.getId();
     }
 
@@ -69,6 +78,7 @@ public class PizzaController {
         Optional<Pizza> result = pizzaRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("pizza", result.get());
+            model.addAttribute("ingredienti", ingredientiRepository.findAll());
             return "pizze/edit";
 
         } else {
@@ -85,6 +95,7 @@ public class PizzaController {
                 return "/pizze/edit";
             }
             formPizza.setUrl(pizzaToEdit.getUrl());
+            formPizza.setOfferte(pizzaToEdit.getOfferte());
             Pizza savedPizza = pizzaRepository.save(formPizza);
             return "redirect:/pizze/show/{id}";
 

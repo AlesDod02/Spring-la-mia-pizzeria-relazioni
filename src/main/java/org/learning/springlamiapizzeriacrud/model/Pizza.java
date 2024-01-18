@@ -30,6 +30,8 @@ public class Pizza {
     @OneToMany(mappedBy = "pizza", orphanRemoval = true)
     private List<Offerta> offerte;
 
+    @ManyToMany
+    private List<Ingredienti> ingredientiList;
 
     public Integer getId() {
         return id;
@@ -77,6 +79,14 @@ public class Pizza {
 
     public void setOfferte(List<Offerta> offerte) {
         this.offerte = offerte;
+    }
+
+    public List<Ingredienti> getIngredientiList() {
+        return ingredientiList;
+    }
+
+    public void setIngredientiList(List<Ingredienti> ingredientiList) {
+        this.ingredientiList = ingredientiList;
     }
 
     public boolean getFineOfferta() {
