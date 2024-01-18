@@ -21,11 +21,9 @@
             <h1 class="text-center" th:text="${pizza.name}"></h1>
             <h2 class="text-center mt-3" th:text="${pizza.description}"></h2>
             <h3 class="text-center mt-2" th:text="${pizza.price} + ' '+ €"> </h3>
-            <ul>
-                <li th:each="ingr : ${pizza.ingredientiList}"><span
-                     th:text="${ingr.name}"></span>
-                </li>
-            </ul>
+
+            <p class="fw-bold" th:each="ingr : ${pizza.ingredientiList}">·<span th:text="${ingr.name}"></span>·</p>
+
         </div>
     </div>
     <section class="mt-5">
